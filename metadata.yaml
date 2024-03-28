@@ -15,5 +15,5 @@
 homepage: "https://www.linkedin.com/in/giovani-ortolani-barbosa/"
 documentation: "https://github.com/giovaniortolani/convert-to-string-sgtm/?tab=readme-ov-file#example-community-template"
 versions:
-  - sha: c34b8e77b9d77edfd28802e8a4b70b37665dcc32
+  - sha: db94ddf45babe1f694b88ddc39ca1f37bfec55b4
     changeNotes: Initial Version
