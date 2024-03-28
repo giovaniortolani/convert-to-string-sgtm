@@ -12,23 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
+___TERMS_OF_SERVICE___
+
+By creating or modifying this file you agree to Google Tag Manager's Community
+Template Gallery Developer Terms of Service available at
+https://developers.google.com/tag-manager/gallery-tos (or such other URL as
+Google may provide), as modified from time to time.
+
+
 ___INFO___
 
 {
-  "displayName": "Example Template",
-  "description": "This is an example template. For more information, visit https://developers.google.com/tag-manager/templates",
-  "categories": ["AFFILIATE_MARKETING", "ADVERTISING"],
-  "securityGroups": [],
+  "type": "MACRO",
   "id": "cvt_temp_public_id",
-  "type": "TAG",
   "version": 1,
-  "brand": {
-    "thumbnail": "",
-    "displayName": "",
-    "id": "brand_dummy"
-  },
+  "securityGroups": [],
+  "displayName": "Convert to String",
+  "categories": [
+    "UTILITY"
+  ],
+  "description": "Converts an entity of any type (string, number, boolean, null, undefined, Array, Object or Function) to a string.",
   "containerContexts": [
-    "WEB"
+    "SERVER"
   ]
 }
 
@@ -37,74 +43,49 @@ ___TEMPLATE_PARAMETERS___
 
 [
   {
-    "help": "Enter an example measurement ID. The value can be any character. This is only an example.",
-    "displayName": "Example Measurement ID",
-    "defaultValue": "foobarbaz1234",
-    "name": "MeasurementID",
-    "type": "TEXT"
+    "type": "TEXT",
+    "name": "entity",
+    "displayName": "Reference to an entity to be stringified",
+    "simpleValueType": true,
+    "help": "Enter a reference to a variable that contains an entity to be stringified. This entity can be of any type (string, number, boolean, null, undefined, Array, Object or Function).\n\u003cbr\u003e\nIf you pass a Function as an entity, it will return \u003ci\u003eundefined\u003c/i\u003e.\n\u003cbr\u003e\nOtherwise, it will return the entity stringified.",
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY"
+      }
+    ],
+    "alwaysInSummary": true
   }
 ]
 
 
-___WEB_PERMISSIONS___
+___SANDBOXED_JS_FOR_SERVER___
 
-[
-  {
-    "instance": {
-      "key": {
-        "publicId": "logging",
-        "versionId": "1"
-      },
-      "param": [
-        {
-          "key": "environments",
-          "value": {
-            "type": 1,
-            "string": "debug"
-          }
-        }
-      ]
-    },
-    "isRequired": true
-  },
-  {
-    "instance": {
-      "key": {
-        "publicId": "get_referrer",
-        "versionId": "1"
-      },
-      "param": [
-        {
-          "key": "urlParts",
-          "value": {
-            "type": 1,
-            "string": "any"
-          }
-        }
-      ]
-    },
-    "isRequired": true
-  }
-]
+const getType = require('getType');
+const JSON = require('JSON');
+const makeString = require('makeString');
 
+const entity = data.entity;
+const entityType = getType(entity);
+let entityStringified;
 
-___SANDBOXED_JS_FOR_WEB_TEMPLATE___
-
-// Enter your template code here.
-const queryPermission = require('queryPermission');
-const getReferrerUrl = require('getReferrerUrl');
-let referrer;
-if (queryPermission('get_referrer', 'query')) {
-  referrer = getReferrerUrl('queryParams');
+if (entityType === 'function') {
+  return;
 }
 
-var log = require('logToConsole');
-log('data =', data);
+if (entityType === 'object' || entityType === 'array') {
+  entityStringified = JSON.stringify(entity);
+} else {
+  entityStringified = makeString(entity);
+}
 
-// Call data.gtmOnSuccess when the tag is finished.
-data.gtmOnSuccess();
+return entityStringified;
+
+
+___TESTS___
+
+scenarios: []
 
 
 ___NOTES___
 
-Created on 9/2/2019, 1:02:37 PM
+Created on 3/28/2024, 6:30:28 PM
