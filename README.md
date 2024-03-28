@@ -1,5 +1,18 @@
-# example-community-template
+# Convert to String Variable template for Server-Side GTM
 
-The example-community-template project is an example of a Google Tag Manager [Community Template Gallery template repository](https://support.google.com/tagmanager/answer/9454109) repository that can be used as a template to generate new community template repositories.
+Converts an entity of any type (`string`, `number`, `boolean`, `null`, `undefined`, `Array`, `Object` or `Function`) to a string.
 
-To submit your own template, see the [detailed instructions on how to submit templates to the Community Template Gallery](https://developers.google.com/tag-manager/templates/gallery).
+---
+
+Enter a reference to a variable that contains an entity to be stringified.
+
+This entity can be of any type (`string`, `number`, `boolean`, `null`, `undefined`, `Array`, `Object` or `Function`).
+
+
+If you pass a `Function` as an entity, it will return `undefined`.
+Otherwise, it will return the entity stringified.
+
+---
+
+## Author(s)
+[Giovani Ortolani Barbosa](https://www.linkedin.com/in/giovani-ortolani-barbosa/)
