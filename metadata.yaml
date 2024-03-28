@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-homepage: "https://www.example.com"
-documentation: "https://www.example.com/documentation"
+homepage: "https://www.linkedin.com/in/giovani-ortolani-barbosa/"
+documentation: "https://github.com/giovaniortolani/convert-to-string-sgtm/?tab=readme-ov-file#example-community-template"
 versions:
   - sha: c34b8e77b9d77edfd28802e8a4b70b37665dcc32
     changeNotes: Initial Version
