@@ -1,4 +1,4 @@
-# Copyright 2019 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,5 +15,7 @@
 homepage: "https://www.linkedin.com/in/giovani-ortolani-barbosa/"
 documentation: "https://github.com/giovaniortolani/convert-to-string-sgtm/?tab=readme-ov-file#example-community-template"
 versions:
+  - sha: 7c58cca0e0eaefefa28d4c2f94d5377cb6f5d36f
+    changeNotes: README update
   - sha: db94ddf45babe1f694b88ddc39ca1f37bfec55b4
     changeNotes: Initial Version
