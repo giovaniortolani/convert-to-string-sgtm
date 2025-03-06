@@ -1,19 +1,4 @@
-// Copyright 2024 Google LLC
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-//     https://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-
-___TERMS_OF_SERVICE___
+﻿___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -66,26 +51,100 @@ const makeString = require('makeString');
 
 const entity = data.entity;
 const entityType = getType(entity);
-let entityStringified;
 
 if (entityType === 'function') {
   return;
 }
 
 if (entityType === 'object' || entityType === 'array') {
-  entityStringified = JSON.stringify(entity);
-} else {
-  entityStringified = makeString(entity);
+  return JSON.stringify(entity);
 }
 
-return entityStringified;
+return makeString(entity);
 
 
 ___TESTS___
 
-scenarios: []
+scenarios:
+- name: function as input
+  code: |-
+    mockData.entity = function() {};
+
+    let variableResult = runCode(mockData);
+
+    assertThat(variableResult).isUndefined();
+- name: object as input
+  code: |-
+    mockData.entity = { foo: 'bar' };
+
+    const expectedResult = JSON.stringify(mockData.entity);
+
+    let variableResult = runCode(mockData);
+
+    assertThat(variableResult).isEqualTo(expectedResult);
+- name: array as input
+  code: |-
+    mockData.entity = [1, 'foo', { foo: 'bar' }];
+
+    const expectedResult = JSON.stringify(mockData.entity);
+
+    let variableResult = runCode(mockData);
+
+    assertThat(variableResult).isEqualTo(expectedResult);
+- name: number as input
+  code: |-
+    mockData.entity = 123;
+
+    const expectedResult = makeString(mockData.entity);
+
+    let variableResult = runCode(mockData);
+
+    assertThat(variableResult).isEqualTo(expectedResult);
+- name: string as input
+  code: |-
+    const expectedResult = 'foobar';
+
+    mockData.entity = expectedResult;
+
+    let variableResult = runCode(mockData);
+
+    assertThat(variableResult).isEqualTo(expectedResult);
+- name: boolean as input
+  code: |-
+    mockData.entity = true;
+
+    const expectedResult = makeString(mockData.entity);
+
+    let variableResult = runCode(mockData);
+
+    assertThat(variableResult).isEqualTo(expectedResult);
+- name: null as input
+  code: |-
+    mockData.entity = null;
+
+    const expectedResult = makeString(mockData.entity);
+
+    let variableResult = runCode(mockData);
+
+    assertThat(variableResult).isEqualTo(expectedResult);
+- name: undefined as input
+  code: |-
+    mockData.entity = undefined;
+
+    const expectedResult = makeString(mockData.entity);
+
+    let variableResult = runCode(mockData);
+
+    assertThat(variableResult).isEqualTo(expectedResult);
+setup: |-
+  const JSON = require('JSON');
+  const makeString = require('makeString');
+
+  const mockData = {};
 
 
 ___NOTES___
 
 Created on 3/28/2024, 6:30:28 PM
+
+
