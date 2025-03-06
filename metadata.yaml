@@ -13,8 +13,10 @@
 # limitations under the License.
 
 homepage: "https://www.linkedin.com/in/giovani-ortolani-barbosa/"
-documentation: "https://github.com/giovaniortolani/convert-to-string-sgtm/?tab=readme-ov-file#example-community-template"
+documentation: "https://github.com/giovaniortolani/convert-to-string-sgtm/"
 versions:
+  - sha: 6f2660f823b30086f17cda02ee84e94aa4fbe12c
+    changeNotes: Added tests and refactored the code.
   - sha: 7c58cca0e0eaefefa28d4c2f94d5377cb6f5d36f
     changeNotes: README update
   - sha: db94ddf45babe1f694b88ddc39ca1f37bfec55b4
